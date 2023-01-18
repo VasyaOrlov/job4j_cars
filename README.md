@@ -16,3 +16,6 @@
 - SpringBoot 2.7.4
 - Checkstyle-plugin 3.1.2
 - Liquibase 4.15.0
+- Hibernate 5.6.11
+- PostgreSQL 14
+- Lombok 1.18.22
