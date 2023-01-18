@@ -128,9 +128,9 @@ public class UserRepository {
     public Optional<User> findByLogin(String login) {
         Session session = sf.openSession();
         session.beginTransaction();
-        Optional<User> rsl = Optional.ofNullable(session.createQuery(FIND_BY_LOGIN, User.class)
+        Optional<User> rsl = session.createQuery(FIND_BY_LOGIN, User.class)
                 .setParameter("fLogin", login)
-                .uniqueResult());
+                .uniqueResultOptional();
         session.getTransaction().commit();
         session.close();
         return rsl;
