@@ -10,3 +10,9 @@
 - тип кузова
 - фото
 - статус о продаже
+
+# Стек технологий
+- Java 17
+- SpringBoot 2.7.4
+- Checkstyle-plugin 3.1.2
+- Liquibase 4.15.0
