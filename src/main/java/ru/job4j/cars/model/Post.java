@@ -30,7 +30,7 @@ public class Post {
     private List<PriceHistory> priceHistoryList;
     @ManyToMany
     @JoinTable(
-            name ="participates",
+            name = "participates",
             joinColumns = { @JoinColumn(name = "post_id")},
             inverseJoinColumns = { @JoinColumn(name = "user_id")}
     )

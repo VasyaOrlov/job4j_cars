@@ -18,6 +18,6 @@ public class Participates {
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int user_id;
-    private int post_id;
+    private int userId;
+    private int postId;
 }
