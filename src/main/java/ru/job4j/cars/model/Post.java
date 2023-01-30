@@ -23,13 +23,13 @@ public class Post {
     private int id;
     private String description;
     private LocalDateTime created = LocalDateTime.now();
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "auto_user_id")
     private User user;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "auto_post_id")
     private List<PriceHistory> priceHistoryList;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "participates",
             joinColumns = { @JoinColumn(name = "post_id")},
@@ -39,4 +39,5 @@ public class Post {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "car_id")
     private Car car;
+    private byte[] photo;
 }

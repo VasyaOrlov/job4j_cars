@@ -1,0 +1,1 @@
+alter table auto_post add column if not exists photo bytea;
