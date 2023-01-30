@@ -36,4 +36,7 @@ public class Post {
             inverseJoinColumns = { @JoinColumn(name = "user_id")}
     )
     private List<User> participates = new ArrayList<>();
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "car_id")
+    private Car car;
 }
