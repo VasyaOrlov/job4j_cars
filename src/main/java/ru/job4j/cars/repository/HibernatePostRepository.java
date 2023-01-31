@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import ru.job4j.cars.model.Post;
+
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -39,7 +41,7 @@ public class HibernatePostRepository implements  PostRepository {
                     + "join fetch p.priceHistoryList "
                     + "join fetch p.participates "
                     + "join fetch p.car"
-                    + "where p.created > current_date - 1";
+                    + "where p.created between :fLast and :fNow";
     private static final String FIND_WITH_PHOTO =
             "select distinct p from Post as p "
                     + "join fetch p.user "
@@ -132,7 +134,9 @@ public class HibernatePostRepository implements  PostRepository {
      */
     @Override
     public List<Post> findLastDay() {
-        return crudRepository.list(FIND_LAST_DAY, Post.class);
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime lastDay = LocalDateTime.now().minusDays(1);
+        return crudRepository.list(FIND_LAST_DAY, Post.class, Map.of("fLast", lastDay, "fNow", now));
     }
 
     /**
