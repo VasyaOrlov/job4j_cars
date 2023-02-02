@@ -24,10 +24,8 @@ public class HibernatePostRepository implements  PostRepository {
     private static final String DELETE = "delete Post where id = :fID";
     private static final String FIND_ALL =
             "select distinct p from Post as p "
-                    + "join fetch p.user "
-                    + "join fetch p.priceHistoryList "
-                    + "join fetch p.participates "
-                    + "join fetch p.car";
+                    + "join fetch p.user ";
+
     private static final String FIND_BY_ID =
             "select distinct p from Post as p "
                     + "join fetch p.user "
@@ -38,23 +36,14 @@ public class HibernatePostRepository implements  PostRepository {
     private static final String FIND_LAST_DAY =
             "select distinct p from Post as p "
                     + "join fetch p.user "
-                    + "join fetch p.priceHistoryList "
-                    + "join fetch p.participates "
-                    + "join fetch p.car"
                     + "where p.created between :fLast and :fNow";
     private static final String FIND_WITH_PHOTO =
             "select distinct p from Post as p "
                     + "join fetch p.user "
-                    + "join fetch p.priceHistoryList "
-                    + "join fetch p.participates "
-                    + "join fetch p.car"
                     + "where p.photo is not null";
     private static final String FIND_WITH_CAR =
             "select distinct p from Post as p "
                     + "join fetch p.user "
-                    + "join fetch p.priceHistoryList "
-                    + "join fetch p.participates "
-                    + "join fetch p.car"
                     + "where p.car in (from Car where name =:fCarName)";
     private static final Logger LOG = LoggerFactory
             .getLogger(HibernateCarRepository.class.getName());

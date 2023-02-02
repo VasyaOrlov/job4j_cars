@@ -91,7 +91,9 @@ public class HibernateUserRepository implements UserRepository {
      * @return список пользователей.
      */
     public List<User> findByLikeLogin(String key) {
-        return crudRepository.list(FIND_LOGIN_LIKE, User.class, Map.of("key", key));
+        return crudRepository.list(FIND_LOGIN_LIKE,
+                User.class,
+                Map.of("key", "%" + key + "%"));
     }
 
     /**

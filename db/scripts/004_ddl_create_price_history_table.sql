@@ -3,5 +3,5 @@ create table if not exists price_history (
    before bigint not null,
    after bigint not null,
    created timestamp without time zone default now(),
-   post_id int not null references auto_post(id)
+   auto_post_id int not null references auto_post(id)
 );

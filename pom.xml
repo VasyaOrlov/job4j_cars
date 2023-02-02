@@ -24,7 +24,46 @@
     <maven.compiler.target>17</maven.compiler.target>
   </properties>
 
+  <profiles>
+    <profile>
+      <id>test</id>
+      <properties>
+        <liquibase.config>db/db_test.properties</liquibase.config>
+      </properties>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+    </profile>
+    <profile>
+      <id>production</id>
+      <properties>
+        <liquibase.config>db/db.properties</liquibase.config>
+      </properties>
+    </profile>
+  </profiles>
+
   <dependencies>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>5.8.2</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <version>3.23.1</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+      <version>1.4.200</version>
+      <scope>test</scope>
+    </dependency>
+
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -84,6 +123,15 @@
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M7</version>
+        <configuration>
+          <skipTests>false</skipTests>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
         <version>3.1.2</version>
         <configuration>
@@ -116,7 +164,7 @@
         <artifactId>liquibase-maven-plugin</artifactId>
         <version>4.15.0</version>
         <configuration>
-          <propertyFile>db/db.properties</propertyFile>
+          <propertyFile>${liquibase.config}</propertyFile>
         </configuration>
       </plugin>
     </plugins>

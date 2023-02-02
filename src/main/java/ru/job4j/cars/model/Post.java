@@ -28,7 +28,7 @@ public class Post {
     private User user;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "auto_post_id")
-    private List<PriceHistory> priceHistoryList;
+    private List<PriceHistory> priceHistoryList = new ArrayList<>();
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "participates",

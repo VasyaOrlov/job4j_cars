@@ -21,9 +21,9 @@ public class HibernateCarRepository implements CarRepository {
 
     private static final String DELETE = "delete Car where id = :fID";
     private static final String FIND_ALL =
-            "select distinct c from Car as c join fetch c.engine join fetch c.drivers";
+            "select distinct c from Car as c join fetch c.engine";
     private static final String FIND_BY_ID =
-            "select distinct c from Car as c join fetch c.engine join fetch c.drivers where c.id = :fID";
+            "select distinct c from Car as c join fetch c.engine where c.id = :fID";
     private static final Logger LOG = LoggerFactory
             .getLogger(HibernateCarRepository.class.getName());
     private CRUDRepository crudRepository;
