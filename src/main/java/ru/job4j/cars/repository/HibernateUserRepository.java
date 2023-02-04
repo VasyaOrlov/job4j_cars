@@ -1,13 +1,17 @@
 package ru.job4j.cars.repository;
 
 import lombok.AllArgsConstructor;
+import net.jcip.annotations.ThreadSafe;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 import ru.job4j.cars.model.User;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+@Repository
+@ThreadSafe
 @AllArgsConstructor
 public class HibernateUserRepository implements UserRepository {
 
@@ -16,6 +20,7 @@ public class HibernateUserRepository implements UserRepository {
     private static final String  FIND_LOGIN_LIKE = "from User where login like :key";
     private static final String  FIND_BY_ID = "from User where id = :fid";
     private static final String  FIND_BY_LOGIN = "from User where login = :fLogin";
+    private static final String  FIND_BY_LOGIN_PASS = "from User where login = :fLogin and password = :fPass";
     private static final Logger LOG = LoggerFactory.getLogger(HibernateUserRepository.class.getName());
     private CRUDRepository crudRepository;
 
@@ -105,6 +110,25 @@ public class HibernateUserRepository implements UserRepository {
         Optional<User> rsl = Optional.empty();
         try {
             rsl = crudRepository.optional(FIND_BY_LOGIN, User.class, Map.of("fLogin", login));
+        } catch (Exception e) {
+            LOG.error("Ошибка поиска пользователя по id" + e);
+        }
+        return rsl;
+    }
+
+    /**
+     * найти пользователя по логину и паролю
+     * @param login - логин
+     * @param pass - пароль
+     * @return - Optional  с найденным пользователем
+     */
+    @Override
+    public Optional<User> findByLoginPass(String login, String pass) {
+        Optional<User> rsl = Optional.empty();
+        try {
+            rsl = crudRepository.optional(FIND_BY_LOGIN_PASS,
+                    User.class,
+                    Map.of("fLogin", login, "fPass", pass));
         } catch (Exception e) {
             LOG.error("Ошибка поиска пользователя по id" + e);
         }

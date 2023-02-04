@@ -17,4 +17,5 @@ public interface UserRepository {
     Optional<User> findById(int id);
     List<User> findByLikeLogin(String key);
     Optional<User> findByLogin(String login);
+    Optional<User> findByLoginPass(String login, String pass);
 }

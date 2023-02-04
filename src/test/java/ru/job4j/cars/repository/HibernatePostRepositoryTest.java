@@ -41,7 +41,7 @@ class HibernatePostRepositoryTest {
 
     @Test
     public void whenAddPost() {
-        User user = new User(0, "login", "pass");
+        User user = new User(0, "login", "pass", null);
         userRepository.create(user);
         Post post = new Post();
         post.setDescription("desc");
@@ -52,7 +52,7 @@ class HibernatePostRepositoryTest {
 
     @Test
     public void whenUpdatePost() {
-        User user = new User(0, "login", "pass");
+        User user = new User(0, "login", "pass", null);
         userRepository.create(user);
         Post post = new Post();
         post.setDescription("desc");
@@ -69,7 +69,7 @@ class HibernatePostRepositoryTest {
 
     @Test
     public void whenDeletePost() {
-        User user = new User(0, "login", "pass");
+        User user = new User(0, "login", "pass", null);
         userRepository.create(user);
         Post post = new Post();
         post.setDescription("desc");
@@ -82,14 +82,14 @@ class HibernatePostRepositoryTest {
 
     @Test
     public void whenFindAll() {
-        User user = new User(0, "login", "pass");
+        User user = new User(0, "login", "pass", null);
         userRepository.create(user);
         Post post = new Post();
         post.setDescription("desc");
         post.setUser(user);
         postRepository.add(post);
 
-        User user2 = new User(0, "login2", "pass2");
+        User user2 = new User(0, "login2", "pass2", null);
         userRepository.create(user2);
         Post post2 = new Post();
         post2.setDescription("description");
@@ -108,7 +108,7 @@ class HibernatePostRepositoryTest {
         LocalDateTime yesterday = LocalDateTime.now()
                 .minus(2, ChronoUnit.DAYS);
 
-        User user = new User(0, "login", "pass");
+        User user = new User(0, "login", "pass", null);
         userRepository.create(user);
         Post post = new Post();
         post.setDescription("desc");
@@ -116,7 +116,7 @@ class HibernatePostRepositoryTest {
         post.setUser(user);
         postRepository.add(post);
 
-        User user2 = new User(0, "login2", "pass2");
+        User user2 = new User(0, "login2", "pass2", null);
         userRepository.create(user2);
         Post post2 = new Post();
         post2.setDescription("description");
@@ -131,7 +131,7 @@ class HibernatePostRepositoryTest {
 
     @Test
     public void whenFindWithPhoto() {
-        User user = new User(0, "login", "pass");
+        User user = new User(0, "login", "pass", null);
         userRepository.create(user);
         Post post = new Post();
         post.setDescription("desc");
@@ -139,7 +139,7 @@ class HibernatePostRepositoryTest {
         post.setPhoto(new byte[]{1, 1, 1, 1});
         postRepository.add(post);
 
-        User user2 = new User(0, "login2", "pass2");
+        User user2 = new User(0, "login2", "pass2", null);
         userRepository.create(user2);
         Post post2 = new Post();
         post2.setDescription("description");
@@ -153,7 +153,7 @@ class HibernatePostRepositoryTest {
 
     @Test
     public void whenFindWithCar() {
-        User user = new User(0, "login", "pass");
+        User user = new User(0, "login", "pass", null);
         userRepository.create(user);
         Post post = new Post();
         post.setDescription("desc");
@@ -165,7 +165,7 @@ class HibernatePostRepositoryTest {
         post.setCar(car);
         postRepository.add(post);
 
-        User user2 = new User(0, "login2", "pass2");
+        User user2 = new User(0, "login2", "pass2", null);
         userRepository.create(user2);
         Post post2 = new Post();
         post2.setDescription("description");

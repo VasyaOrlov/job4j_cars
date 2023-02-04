@@ -37,7 +37,7 @@ class HibernateDriverRepositoryTest {
 
     @Test
     public void whenAddDriver() {
-        User user = new User(0, "login", "password");
+        User user = new User(0, "login", "password", null);
         userRepository.create(user);
         Driver driver = new Driver(0, "водитель 1", user);
         Optional<Driver> rsl = driverRepository.add(driver);
@@ -51,7 +51,7 @@ class HibernateDriverRepositoryTest {
 
     @Test
     public void whenDeleteDriver() {
-        User user = new User(0, "login", "password");
+        User user = new User(0, "login", "password", null);
         userRepository.create(user);
         Driver driver = new Driver(0, "водитель 1", user);
         driverRepository.add(driver);
@@ -61,7 +61,7 @@ class HibernateDriverRepositoryTest {
 
     @Test
     public void whenUpdateDriver() {
-        User user = new User(0, "login", "password");
+        User user = new User(0, "login", "password", null);
         userRepository.create(user);
         Driver driver = new Driver(0, "водитель 1", user);
         driverRepository.add(driver);
@@ -72,12 +72,12 @@ class HibernateDriverRepositoryTest {
 
     @Test
     public void whenFindAll() {
-        User user = new User(0, "login", "password");
+        User user = new User(0, "login", "password", null);
         userRepository.create(user);
         Driver driver = new Driver(0, "водитель 1", user);
         driverRepository.add(driver);
 
-        User user2 = new User(0, "login2", "password2");
+        User user2 = new User(0, "login2", "password2", null);
         userRepository.create(user2);
         Driver driver2 = new Driver(0, "водитель 1", user2);
         driverRepository.add(driver2);
@@ -89,7 +89,7 @@ class HibernateDriverRepositoryTest {
 
     @Test
     public void whenFindById() {
-        User user = new User(0, "login", "password");
+        User user = new User(0, "login", "password", null);
         userRepository.create(user);
         Driver driver = new Driver(0, "водитель 1", user);
         driverRepository.add(driver);

@@ -33,19 +33,19 @@ class HibernateUserRepositoryTest {
 
     @Test
     public void whenCreateUser() {
-        User user = new User(0, "login", "password");
+        User user = new User(0, "login", "password", "Africa/Abidjan");
         Optional<User> rsl = userRepository.create(user);
         String rslLogin = rsl.isEmpty() ? null : rsl.get().getLogin();
         assertThat(rslLogin).isEqualTo("login");
 
-        User user2 = new User(user.getId(), "login2", "pass2");
+        User user2 = new User(user.getId(), "login2", "pass2", null);
         Optional<User> rsl2 = userRepository.create(user2);
         assertThat(rsl2.isEmpty()).isTrue();
     }
 
     @Test
     public void whenDeleteUser() {
-        User user = new User(0, "login", "password");
+        User user = new User(0, "login", "password", null);
         userRepository.create(user);
         boolean rsl = userRepository.delete(user.getId());
         assertThat(rsl).isTrue();
@@ -53,9 +53,9 @@ class HibernateUserRepositoryTest {
 
     @Test
     public void whenFindAllOrderById() {
-        User user1 = new User(0, "login1", "password1");
-        User user2 = new User(0, "login2", "password2");
-        User user3 = new User(0, "login3", "password3");
+        User user1 = new User(0, "login1", "password1", null);
+        User user2 = new User(0, "login2", "password2", null);
+        User user3 = new User(0, "login3", "password3", null);
 
         userRepository.create(user3);
         userRepository.create(user1);
@@ -68,7 +68,7 @@ class HibernateUserRepositoryTest {
 
     @Test
     public void whenFindById() {
-        User user = new User(0, "login", "password");
+        User user = new User(0, "login", "password", null);
         userRepository.create(user);
         Optional<User> rsl = userRepository.findById(user.getId());
         assertThat(rsl.get().getLogin()).isEqualTo("login");
@@ -76,9 +76,9 @@ class HibernateUserRepositoryTest {
 
     @Test
     public void whenFindByLikeLogin() {
-        User user1 = new User(0, "log3in1", "password1");
-        User user2 = new User(0, "login2", "password2");
-        User user3 = new User(0, "log3in2", "password3");
+        User user1 = new User(0, "log3in1", "password1", null);
+        User user2 = new User(0, "login2", "password2", null);
+        User user3 = new User(0, "log3in2", "password3", null);
 
         userRepository.create(user1);
         userRepository.create(user2);
@@ -91,9 +91,9 @@ class HibernateUserRepositoryTest {
 
     @Test
     public void whenFindByLogin() {
-        User user1 = new User(0, "log3in1", "password1");
-        User user2 = new User(0, "login2", "password2");
-        User user3 = new User(0, "log3in2", "password3");
+        User user1 = new User(0, "log3in1", "password1", null);
+        User user2 = new User(0, "login2", "password2", null);
+        User user3 = new User(0, "log3in2", "password3", null);
 
         userRepository.create(user1);
         userRepository.create(user2);
