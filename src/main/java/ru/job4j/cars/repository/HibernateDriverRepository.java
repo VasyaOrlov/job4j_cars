@@ -22,9 +22,9 @@ public class HibernateDriverRepository implements DriverRepository {
 
     private static final String DELETE = "delete Driver where id = :fID";
     private static final String FIND_ALL =
-            "from Driver as d join fetch d.user";
+            "from Driver ";
     private static final String FIND_BY_ID =
-            "from Driver as d join fetch d.user where d.id = :fID";
+            "from Driver where id = :fID";
     private static final Logger LOG = LoggerFactory
             .getLogger(HibernateDriverRepository.class.getName());
     private CRUDRepository crudRepository;

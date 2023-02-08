@@ -37,7 +37,6 @@ class HibernateCarRepositoryTest {
     @Test
     public void whenAddCar() {
         Engine engine = new Engine(0, "engine");
-        engineRepository.add(engine);
         Car car = new Car(0, "car", engine, null);
         Optional<Car> rsl = carRepository.add(car);
         assertThat(rsl.get().getName()).isEqualTo("car");
@@ -50,7 +49,6 @@ class HibernateCarRepositoryTest {
     @Test
     public void whenDeleteCar() {
         Engine engine = new Engine(0, "engine");
-        engineRepository.add(engine);
         Car car = new Car(0, "car", engine, null);
         carRepository.add(car);
         boolean rsl = carRepository.delete(car.getId());
@@ -60,7 +58,6 @@ class HibernateCarRepositoryTest {
     @Test
     public void whenUpdateCar() {
         Engine engine = new Engine(0, "engine");
-        engineRepository.add(engine);
         Car car = new Car(0, "car", engine, null);
         carRepository.add(car);
         Car car2 = new Car(car.getId(), "car2", engine, null);
@@ -71,10 +68,10 @@ class HibernateCarRepositoryTest {
     @Test
     public void whenFindAll() {
         Engine engine = new Engine(0, "engine");
-        engineRepository.add(engine);
         Car car = new Car(0, "car", engine, null);
         carRepository.add(car);
-        Car car2 = new Car(0, "car2", engine, null);
+        Engine engine2 = new Engine(0, "engine");
+        Car car2 = new Car(0, "car2", engine2, null);
         carRepository.add(car2);
 
         List<Car> expect = List.of(car, car2);
@@ -85,7 +82,6 @@ class HibernateCarRepositoryTest {
     @Test
     public void whenFindById() {
         Engine engine = new Engine(0, "engine");
-        engineRepository.add(engine);
         Car car = new Car(0, "car", engine, null);
         carRepository.add(car);
         Optional<Car> rsl = carRepository.findById(car.getId());

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <title>Объявления</title>
+</head>
+<body>
+    <div class="container">
+        <a type="submit" class="btn btn-success mt-1 col-12" th:href="@{/post/add}">Разместить объявление</a>
+        <p></p>
+        <p3 th:text="${header}"></p3>
+        <p></p>
+        <div class="row">
+            <table class="table">
+                <thead>
+                <tr align="center">
+                    <th scope="col">#</th>
+                    <th scope="col">Фото</th>
+                    <th scope="col">Машина</th>
+                    <th scope="col">Двигатель</th>
+                    <th scope="col">Дата создания</th>
+                    <th scope="col">Цена</th>
+                    <th scope="col">Статус</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr align="center" th:each="post: ${posts}">
+                    <td th:text="${post.id}"></td>
+                    <td><img th:width="150" th:high="150" th:src="@{/post/{id}(id=${post.id})}" src=""></td>
+                    <td><a th:text="${post.car.name}" th:href="@{/post/view/{id}(id=${post.id})}"></a></td>
+                    <td th:text="${post.car.engine.name}"></td>
+                    <td th:text="${#temporals.format(post.created, 'dd-MM-yyyy HH:mm')}"></td>
+                    <td >1</td>
+                    <td th:if="${post.status}" style="color: green">Продано</td>
+                    <td th:if="${!post.status}" style="color: Red">Продается</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

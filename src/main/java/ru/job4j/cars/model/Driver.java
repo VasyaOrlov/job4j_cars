@@ -20,7 +20,4 @@ public class Driver {
     @EqualsAndHashCode.Include
     private int id;
     private String name;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "auto_user_id")
-    private User user;
 }

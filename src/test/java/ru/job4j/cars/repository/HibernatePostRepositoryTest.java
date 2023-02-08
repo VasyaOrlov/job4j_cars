@@ -82,16 +82,22 @@ class HibernatePostRepositoryTest {
 
     @Test
     public void whenFindAll() {
+        Engine engine = new Engine(0, "engine");
+        Car car = new Car(0, "car", engine, null);
         User user = new User(0, "login", "pass", null);
         userRepository.create(user);
         Post post = new Post();
+        post.setCar(car);
         post.setDescription("desc");
         post.setUser(user);
         postRepository.add(post);
 
+        Engine engine2 = new Engine(0, "engine2");
+        Car car2 = new Car(0, "car2", engine2, null);
         User user2 = new User(0, "login2", "pass2", null);
         userRepository.create(user2);
         Post post2 = new Post();
+        post2.setCar(car2);
         post2.setDescription("description");
         post2.setUser(user2);
         postRepository.add(post2);
@@ -108,17 +114,23 @@ class HibernatePostRepositoryTest {
         LocalDateTime yesterday = LocalDateTime.now()
                 .minus(2, ChronoUnit.DAYS);
 
+        Engine engine = new Engine(0, "engine");
+        Car car = new Car(0, "car", engine, null);
         User user = new User(0, "login", "pass", null);
         userRepository.create(user);
         Post post = new Post();
+        post.setCar(car);
         post.setDescription("desc");
         post.setCreated(today);
         post.setUser(user);
         postRepository.add(post);
 
+        Engine engine2 = new Engine(0, "engine2");
+        Car car2 = new Car(0, "car2", engine2, null);
         User user2 = new User(0, "login2", "pass2", null);
         userRepository.create(user2);
         Post post2 = new Post();
+        post2.setCar(car2);
         post2.setDescription("description");
         post2.setCreated(yesterday);
         post2.setUser(user2);
@@ -131,17 +143,23 @@ class HibernatePostRepositoryTest {
 
     @Test
     public void whenFindWithPhoto() {
+        Engine engine = new Engine(0, "engine");
+        Car car = new Car(0, "car", engine, null);
         User user = new User(0, "login", "pass", null);
         userRepository.create(user);
         Post post = new Post();
+        post.setCar(car);
         post.setDescription("desc");
         post.setUser(user);
         post.setPhoto(new byte[]{1, 1, 1, 1});
         postRepository.add(post);
 
+        Engine engine2 = new Engine(0, "engine2");
+        Car car2 = new Car(0, "car2", engine2, null);
         User user2 = new User(0, "login2", "pass2", null);
         userRepository.create(user2);
         Post post2 = new Post();
+        post2.setCar(car2);
         post2.setDescription("description");
         post2.setUser(user2);
         postRepository.add(post2);
@@ -159,9 +177,7 @@ class HibernatePostRepositoryTest {
         post.setDescription("desc");
         post.setUser(user);
         Engine engine = new Engine(0, "engine");
-        engineRepository.add(engine);
         Car car = new Car(0, "car", engine, null);
-        carRepository.add(car);
         post.setCar(car);
         postRepository.add(post);
 
@@ -170,9 +186,9 @@ class HibernatePostRepositoryTest {
         Post post2 = new Post();
         post2.setDescription("description");
         post2.setUser(user2);
-        Car car2 = new Car(0, "car2", engine, null);
-        carRepository.add(car);
-        post.setCar(car2);
+        Engine engine2 = new Engine(0, "engine2");
+        Car car2 = new Car(0, "car2", engine2, null);
+        post2.setCar(car2);
         postRepository.add(post2);
 
         List<Post> expect = List.of(post);
