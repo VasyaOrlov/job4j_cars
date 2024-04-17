@@ -24,7 +24,7 @@ public class UserController {
 
     private UserService userService;
 
-    @GetMapping("registration")
+    @GetMapping("/registration")
     public String registration(Model model, HttpSession session) {
         model.addAttribute("timeZones", getZones());
         setUser(model, session);
